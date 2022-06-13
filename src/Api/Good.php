@@ -138,15 +138,15 @@ class Good extends JdGateWay
      */
     public function jingfen(array $param)
     {
+        $param['eliteId'] = $param['eliteId'] ?? 1;
+        $param['groupId'] = $param['groupId'] ?? 0;
+        $param['pageIndex'] = $param['pageIndex'] ?? 1;
+        $param['pageSize'] = $param['pageSize'] ?? 50;
+        $param['sortName'] = $param['sortName'] ?? 'price';
+        $param['sort'] = $param['sort'] ?? 'asc';
 
         $params = [
-            'goodsReq' => [
-                'eliteId' => $param['eliteId'] ?? 1,
-                'pageIndex' => $param['pageIndex'] ?? 1,
-                'pageSize' => $param['pageSize'] ?? 50,
-                'sortName' => $param['sortName'] ?? 'price',
-                'sort' => $param['sort'] ?? 'asc',
-            ]
+            'goodsReq' => $param
         ];
 
         $result = $this->send('jd.union.open.goods.jingfen.query', $params, true);
